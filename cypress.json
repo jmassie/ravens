@@ -1,0 +1,6 @@
+{
+  "baseUrl": "http://localhost:3020/ravens",
+  "pluginsFile": false,
+  "fixturesFolder": false,
+  "chromeWebSecurity": false
+}

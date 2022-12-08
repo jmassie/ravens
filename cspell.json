@@ -1,0 +1,21 @@
+{
+  "version": "0.2",
+  "language": "en-GB",
+  "words": [
+    "editorconfig",
+    "govuk",
+    "matchscore",
+    "naturescot",
+    "parens",
+    "prestart",
+    "reindeerland",
+    "uprn",
+    "subceeded",
+    "Applybot"
+  ],
+  "ignorePaths": [
+    "node_modules/**/*",
+    "dist/**/*",
+    "package-lock.json"
+  ]
+}

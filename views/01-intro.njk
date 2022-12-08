@@ -1,0 +1,21 @@
+{% extends "templates/base.njk" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}ravens - Intro{% endblock %}
+
+{% block content %}
+
+  <h1 class="govuk-heading-l">Intro</h1>
+
+  <form method="post">
+
+    {{ govukButton({
+      text: "Start now",
+      isStartButton: true,
+      preventDoubleClick: true
+    }) }}
+
+  </form>
+
+{% endblock %}

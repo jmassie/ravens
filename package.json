@@ -1,0 +1,121 @@
+{
+  "name": "ravens",
+  "version": "0.1.0",
+  "contributors": [
+    "Jen Foster <jen.foster@nature.scot>",
+    "Mike Coats <mike.coats@nature.scot> (https://github.com/MikeCoats)"
+  ],
+  "repository": "github:Scottish-Natural-Heritage/ravens",
+  "engines": {
+    "node": "^14.6.0 || >=16.0.0"
+  },
+  "scripts": {
+    "lint:spelling": "cspell \"{src/**/*.ts,**/*.json}\"",
+    "lint:code": "xo",
+    "lint": "npm run lint:spelling && npm run lint:code",
+    "clean:ts": "rm -r dist/ || true",
+    "clean:scss": "rm assets/main.css assets/main.css.map || true",
+    "clean": "npm run clean:ts && npm run clean:scss",
+    "build:ts": "tsc",
+    "build:scss": "sass --quiet-deps --load-path=node_modules src/main.scss assets/main.css",
+    "build": "npm run build:ts && npm run build:scss",
+    "start:mock": "node dist/server-mock.js",
+    "start": "node dist/server.js",
+    "prestart": "npm run build",
+    "test:unit": "ava",
+    "test:e2e:run": "cypress run",
+    "test:e2e": "start-server-and-test start:mock http://localhost:3020/health test:e2e:run",
+    "pretest": "npm run build",
+    "test": "npm run test:unit && npm run test:e2e"
+  },
+  "license": "(MIT OR OGL-UK-3.0)",
+  "devDependencies": {
+    "@ava/typescript": "^1.1.1",
+    "@types/hapi__hapi": "^20.0.8",
+    "@types/hapi__inert": "^5.2.3",
+    "@types/hapi__vision": "^5.5.3",
+    "@types/hapi__yar": "^10.1.1",
+    "@types/node": "^16.0.0",
+    "@types/nunjucks": "^3.1.5",
+    "ava": "^3.15.0",
+    "axe-core": "^4.3.3",
+    "axios-mock-adapter": "^1.20.0",
+    "cspell": "^5.6.6",
+    "cypress": "^8.5.0",
+    "cypress-axe": "^0.13.0",
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-editorconfig": "^3.0.2",
+    "eslint-plugin-jsdoc": "^35.4.1",
+    "prettier": "^2.3.2",
+    "sass": "^1.35.2",
+    "start-server-and-test": "^1.14.0",
+    "typescript": "^4.3.5",
+    "xo": "^0.42.0"
+  },
+  "dependencies": {
+    "@hapi/hapi": "^20.1.5",
+    "@hapi/inert": "^6.0.3",
+    "@hapi/vision": "^6.1.0",
+    "@hapi/yar": "^10.1.1",
+    "govuk-frontend": "^3.13.0",
+    "naturescot-frontend": "^3.0.0",
+    "naturescot-utils": "^1.2.0",
+    "nunjucks": "^3.2.3",
+    "axios": "^0.21.4"
+  },
+  "xo": {
+    "space": 2,
+    "prettier": true,
+    "plugins": [
+      "cypress",
+      "jsdoc",
+      "editorconfig"
+    ],
+    "envs": [
+      "cypress/globals"
+    ],
+    "extends": [
+      "plugin:jsdoc/recommended",
+      "plugin:editorconfig/all"
+    ],
+    "rules": {
+      "jsdoc/check-examples": 1,
+      "jsdoc/check-indentation": 1,
+      "jsdoc/check-syntax": 1,
+      "jsdoc/match-description": 1,
+      "jsdoc/require-description": 1,
+      "jsdoc/require-description-complete-sentence": 1,
+      "arrow-body-style": [
+        "error",
+        "always"
+      ],
+      "@typescript-eslint/no-unsafe-call": 0,
+      "@typescript-eslint/no-unsafe-assignment": 0,
+      "@typescript-eslint/no-unsafe-member-access": 0,
+      "unicorn/prevent-abbreviations": [
+        "error",
+        {
+          "replacements": {
+            "application": {
+              "app": false
+            }
+          }
+        }
+      ]
+    }
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true,
+    "arrowParens": "always",
+    "bracketSpacing": false,
+    "trailingComma": "all"
+  },
+  "ava": {
+    "typescript": {
+      "rewritePaths": {
+        "src/": "dist/"
+      }
+    }
+  }
+}

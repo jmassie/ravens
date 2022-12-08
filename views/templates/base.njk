@@ -1,0 +1,35 @@
+{% from "naturescot/components/header/macro.njk" import naturescotHeader %}
+{% from "naturescot/components/footer/macro.njk" import naturescotFooter %}
+
+<html lang="en" class="govuk-template">
+  {% block head %}
+
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+      <meta name="robots" content="noindex, nofollow">
+      <title>
+        {% block pageTitle %}ravens{% endblock %}
+      </title>
+      <link rel="stylesheet" href="/assets/main.css">
+    </head>
+
+  {% endblock %}
+
+  <body class="govuk-template__body">
+
+    {{ naturescotHeader({
+      homepageUrl: "#"
+    }) }}
+
+    <div class="govuk-width-container">
+      <main class="govuk-main-wrapper">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+
+    {{ naturescotFooter({
+
+    }) }}
+  </body>
+</html>
